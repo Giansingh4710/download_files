@@ -9,13 +9,14 @@ PS3="Enter the Number: "
 printf "Enter path: "
 read -r path
 if [ ! -d "$path" ];then
-  path="./"
+  path=$(pwd)
 fi
-echo $path
+
+printf "\nThe Diretory: %s\n\n" "$path"
 
 IFS=',' # Set comma as delimiter
 
-select opt in "GurmatVeechar" "AKJ.org" "GoldenKhajana" "YouTube/SoundCloud etc";do 
+select opt in "GurmatVeechar" "AKJ.org" "GoldenKhajana" "YouTube/SoundCloud etc" "Get Length Of Audio Files";do 
   if [[ $opt == "GurmatVeechar" ]];then
     echo "Enter links from GurmatVeechar.com separated by a comma(,): "
     read -r -a links #Read the split words into an array based on comma delimiter
@@ -32,6 +33,9 @@ select opt in "GurmatVeechar" "AKJ.org" "GoldenKhajana" "YouTube/SoundCloud etc"
     echo "Enter a link for youtube-dl: "
     read -r link
     youtube-dl --extract-audio --audio-format mp3 "$link"
+  elif [[ $opt == "Get Length Of Audio Files" ]];then
+    echo "Enter the Paath to the Dir: "
+    python3 ./code/len_of_files.py "$path"
   fi
   exit
 done
