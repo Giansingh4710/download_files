@@ -7,7 +7,7 @@ mb=re.compile(r"([0-9]{1,3}(\.[0-9]*)?\s((MB)|(KB)))")
 totalFiles=0
 def getAllLinks(url,folder):
     res=requests.get(url)
-    soup=bs(res.text, 'lxml')
+    soup=bs(res.text, 'html.parser')
     khatas=soup.find_all("table",cellpadding=4)
     khatas=khatas[4:-2]
     folderWithLinks={folder:[]}
@@ -138,5 +138,7 @@ def onlyLinks(url):
 path=sys.argv[1]
 urls=sys.argv[2:]
 for url in urls:
+    url=url.strip()
     title=url.split("%2F")[-1]
     EnterUrl(url,path,title)
+

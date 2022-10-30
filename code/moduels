@@ -9,6 +9,10 @@ pip3 show mutagen.mp3; pip3 show urllib.request
 
 pip3 show requests; pip3 show selenium; pip3 show BeautifulSoup4
 
+request == 2.25.1
+selenium == 3.141.0
+BeautifulSoup4 == 4.9.3
+
 Name: requests
 Version: 2.25.1
 Summary: Python HTTP for Humans.

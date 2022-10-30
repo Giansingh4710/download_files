@@ -2,11 +2,6 @@ import urllib.request
 from selenium import webdriver
 import time,os,sys
 
-options = webdriver.ChromeOptions()
-options.headless = True
-options.add_argument("--headless")
-br = webdriver.Chrome('C:/Users/gians/Desktop/stuff/chromedriver.exe')#,options=options)
-
 def getKeertanis(keertanis):
     peopleUrl={}
     for keertani in keertanis:
@@ -94,8 +89,13 @@ keertanis=argv[2:]
 print(keertanis)
 # keertanis=["Bibi Sant Kaur","bhai harsimran singh", "bibi harkiran kaur", "bhai gurbir singh","bibi baljinder kaur", "bhai jagjit singh", "bhai amolak singh","bhai harpreet singh toronto","bhai prabhjot singh delhi","bhai gurinder singh california","bhai davinderbir singh","bhai gursharan singh faridabad","bhai pritpal singh regina", "bhai dilveer singh"]
 # keertanis=["Doola","Harpreet Singh Jee (Toronto)","Jagpal Singh"]
+options = webdriver.ChromeOptions()
+options.headless = True
+options.add_argument("--headless")
+br = webdriver.Chrome('/Users/gians/Desktop/chromedriver')#,options=options)
 a=getKeertanis(keertanis) #{'keetaniName':linkToKeetantracksBykeertani}
 shabads=getShabads(a) #,pages) #{'keertaniName': [links to all their tracks]}
+br.quit()
 
 if not os.path.isdir(whereTodl):
     os.mkdir(whereTodl)

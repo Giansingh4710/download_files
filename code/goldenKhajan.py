@@ -4,7 +4,7 @@ import urllib.request
 
 def ikirtan(link,baseLink): 
     res=requests.get(link)
-    soup=bs(res.text,"lxml")
+    soup=bs(res.text,"html.parser")
     if link[-1]!='/': link+='/'
     
     tables=soup.find_all("table",bgcolor="CCCCCC",width="80%",cellspacing="0",cellpadding="4",border="0")
@@ -22,7 +22,7 @@ def ikirtan(link,baseLink):
 
 def goldenKhajana(link):
     res=requests.get(link)
-    soup=bs(res.text,"lxml")
+    soup=bs(res.text,"html.parser")
     td=soup.find_all("td",valign="top")
     atags=[i.find("a") for i in td]
     links=[]
